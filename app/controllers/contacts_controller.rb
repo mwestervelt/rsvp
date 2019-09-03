@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+    render json: @contact
   end
 
   # GET /contacts/new
@@ -22,6 +23,17 @@ class ContactsController < ApplicationController
   def edit
   end
 
+  # def create
+
+  #   @review = Review.new(review_params)
+
+  #   if @review.save
+  #     render json: @review
+  #   else
+  #     render json: @review.errors, status: :unprocessable_entity
+  #   end
+  # end
+
   # POST /contacts
   # POST /contacts.json
   def create
@@ -29,7 +41,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        # format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -70,6 +82,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :with_guest, :guest_name, :attending, :song_request)
+      params.require(:contact).permit(:name, :last_name, :email, :with_guest, :guest_name, :guest_lastname, :attending, :song_request)
     end
 end
